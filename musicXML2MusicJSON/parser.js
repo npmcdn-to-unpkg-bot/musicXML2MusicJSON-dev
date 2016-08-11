@@ -17,12 +17,18 @@ var finalClean = require('./parsingFunctions/finalClean');
 
 
 module.exports.parseRawMusicXML = function (pathToFile) {
+    
+    console.log('IN PARSER')
     var pathToFile = pathToFile
     async.series([
     function (callback) {
             fs.readFile(__dirname + pathToFile, function (err, data) {
                 parser.parseString(data, function (err, result) {
+                    //console.log('HERE', JSON.stringify(result, null, 2).slice(0,5000));
                     musicXML2JSONConfig.parsedXML = result;
+                    
+                    
+                    
                     callback(null);
                 });
             });
@@ -30,6 +36,7 @@ module.exports.parseRawMusicXML = function (pathToFile) {
 
         
         , function (callback) {
+            console.log('IN 2')
             musicXML2JSONConfig.arrayToHoldNotes = extractAndCleanMusicXML.extractNoteEventsFromParsedXML(musicXML2JSONConfig.parsedXML);
             callback(null, 0);
     }
@@ -38,6 +45,7 @@ module.exports.parseRawMusicXML = function (pathToFile) {
 
         
         , function (callback) {
+            console.log('In 3')
             musicXML2JSONConfig.arrayToHoldCleanedNotes = extractAndCleanMusicXML.cleanMusicXML(musicXML2JSONConfig.arrayToHoldNotes)
             callback(null, 1)
     }
@@ -45,6 +53,8 @@ module.exports.parseRawMusicXML = function (pathToFile) {
 
         
         , function (callback) {
+            
+            console.log('In 4')
             musicXML2JSONConfig.arrayToHoldInstrumentNames = getListsOfVoicesAndInstruments.getListOfDifferentInstrumentNames(musicXML2JSONConfig.arrayToHoldCleanedNotes);
             callback(null, 2)
     }
@@ -66,7 +76,10 @@ module.exports.parseRawMusicXML = function (pathToFile) {
 
         
         , function (callback) {
+//            console.log(JSON.stringify(musicXML2JSONConfig.arrayToHoldEachInstrumentSeperately, null, 2))
             musicXML2JSONConfig.arrayToHoldEachInstrumentSeperately = breakUpVoicesAndChords.breakUpVoicesAndChords(musicXML2JSONConfig.arrayToHoldVoiceNames, musicXML2JSONConfig.arrayToHoldEachInstrumentSeperately);
+            
+            
             callback(null, 5)
         }
 
@@ -87,6 +100,8 @@ module.exports.parseRawMusicXML = function (pathToFile) {
 
         
         , function (callback) {
+            
+//            console.log(JSON.stringify(musicXML2JSONConfig.arrayToHoldEachInstrumentSeperately, null, 2))
             musicXML2JSONConfig.arrayToHoldEachInstrumentSeperately = addNotations.addNotations(musicXML2JSONConfig.arrayToHoldEachInstrumentSeperately);
 
             callback(null, 7);

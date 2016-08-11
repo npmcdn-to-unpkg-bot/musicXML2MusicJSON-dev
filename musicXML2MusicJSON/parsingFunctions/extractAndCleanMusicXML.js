@@ -6,7 +6,9 @@ var constants = require('.././utilities/constants')
      * <p>Testing completed from MusicXML from Sibelius and Musescore</p>
      */
 module.exports.extractNoteEventsFromParsedXML = function (parsedMusicXML) {
+  
     var parsedXML = parsedMusicXML['score-partwise']['part'];
+ 
     var arrayToHoldParts = [];
     var noteStorer = {};
     var arrayToHoldNotes = [];
@@ -15,13 +17,22 @@ module.exports.extractNoteEventsFromParsedXML = function (parsedMusicXML) {
     lodash.forEach(parsedXML, function (value, key) {
         arrayToHoldParts.push(value.measure)
     })
+    
+    
     for (var i = 0; i < arrayToHoldParts.length; i++) {
         
         for (var j = 0; j < arrayToHoldParts[i].length; j++) {
+          
             for (var k = 0; k < arrayToHoldParts[i][j].note.length; k++) {
                 noteStorer = {};
                 noteStorer.measure = parseInt(arrayToHoldParts[i][j]["$"]["number"])
-                noteStorer.duration = arrayToHoldParts[i][j].note[k].duration[0]
+                try {
+                    noteStorer.duration = arrayToHoldParts[i][j].note[k].duration[0]
+                }
+                catch (err) {
+                    noteStorer.duration = 0;
+                    }
+                
                 noteStorer.pitch = arrayToHoldParts[i][j].note[k].pitch
                 noteStorer.rest = arrayToHoldParts[i][j].note[k].rest
                 noteStorer.type = arrayToHoldParts[i][j].note[k].type
@@ -52,6 +63,11 @@ module.exports.extractNoteEventsFromParsedXML = function (parsedMusicXML) {
                     noteStorer.attributes = 'false'
                 }
                 noteStorer.instrument = arrayToHoldParts[i][j].note[k].instrument
+                
+                if (noteStorer.instrument === undefined) {
+                    noteStorer.instrument = i;
+                }
+                
                 noteStorer.staff = arrayToHoldParts[i][j].note[k].staff
                 noteStorer.chord = arrayToHoldParts[i][j].note[k].chord
                 noteStorer.partNumber = i;
@@ -62,6 +78,7 @@ module.exports.extractNoteEventsFromParsedXML = function (parsedMusicXML) {
     return arrayToHoldNotes;
 }
 module.exports.cleanMusicXML = function (arrayToHoldNotes) {
+    console.log('HERE NOW')
     var arrayToHoldCleanedNotes = [];
     var arrayToHoldNotes = arrayToHoldNotes
     for (var i = 0; i < arrayToHoldNotes.length; i++) {
@@ -87,6 +104,7 @@ module.exports.cleanMusicXML = function (arrayToHoldNotes) {
         cleanedNoteStorer.duration = parseInt(arrayToHoldNotes[i].duration);
         
         cleanedNoteStorer.currentTempo = arrayToHoldNotes[i].currentTempo;
+       
         cleanedNoteStorer.instrument = parseMusicXMLUtilities.cleanInstrumentToString(arrayToHoldNotes[i].instrument);
         cleanedNoteStorer.currentVoice = parseInt(currentVoice[0]);
         

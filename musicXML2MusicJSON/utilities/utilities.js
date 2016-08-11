@@ -25,7 +25,16 @@ function convertLetterToBasePitch  (letter) {
     }
 }
 module.exports.cleanInstrumentToString = function (instrument) {
-    return instrument[0]["$"]["id"]
+    
+    
+    
+    if (instrument.toString().length === 1) {
+        return 'Part' + instrument.toString();
+    }
+    else {
+        return instrument[0]["$"]["id"]
+    }
+  
 }
 
 

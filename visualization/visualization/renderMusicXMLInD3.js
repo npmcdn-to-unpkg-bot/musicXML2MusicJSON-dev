@@ -136,7 +136,7 @@ d3.json("data/output.json", function (error, data) {
                 .attr("height", 10)
                 .attr("width", function (d, i) {
                     
-                    return d["Duration"] / 256 * 25
+                    return d["Duration due to tied notes"] / 256 * 25
                 })
                 .attr("x", function (d, i) {
 
