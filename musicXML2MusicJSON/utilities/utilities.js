@@ -28,8 +28,8 @@ module.exports.cleanInstrumentToString = function (instrument) {
     
     
     
-    if (instrument.toString().length === 1) {
-        return 'Part' + instrument.toString();
+    if (instrument.toString().length <= 3) {
+        return 'Part ' + instrument.toString();
     }
     else {
         return instrument[0]["$"]["id"]

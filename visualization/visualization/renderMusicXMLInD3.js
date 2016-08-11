@@ -146,8 +146,8 @@ d3.json("data/output.json", function (error, data) {
                     
                     return 880 - (d["Midi number"] * 10);
                 })
-                .attr("fill", function() {
-                    return d3.interpolateCubehelixDefault(color)
+                .attr("fill", function(d,i) {
+                    return d3.interpolateCubehelixDefault(i)
                 })
                 
                 .on("mouseover", function(d, i){
