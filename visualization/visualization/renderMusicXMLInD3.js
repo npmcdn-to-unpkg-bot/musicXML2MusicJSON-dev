@@ -67,6 +67,8 @@ function covertMidiNumberToNamedNote(midiNumber) {
 }
  
 
+
+
 function createTextForToolTip(absLocation,
                                beatType,
                                beats,
@@ -93,7 +95,7 @@ function createTextForToolTip(absLocation,
         + currentVoice
         + "<br><strong>Duration:</strong> " 
         + duration 
-        + "<br><strong>Duration with notations:</strong> " 
+        + "<br><strong>Duration due to tied notes</strong> " 
         + durationWithNotations
         + "<br><strong>Instrument:</strong> " 
         + instrument
@@ -113,14 +115,8 @@ function createTextForToolTip(absLocation,
         + timeStamp
         + "<br><strong>Note name</strong> " 
         + noteFromMidi
-        
-      
-
-
+    
 }
-
-
-
 
 d3.json("data/output.json", function (error, data) {
 
@@ -135,21 +131,25 @@ d3.json("data/output.json", function (error, data) {
             .append("rect")
                 .attr("height", 10)
                 .attr("width", function (d, i) {
-                    
-                    return d["Duration due to tied notes"] / 256 * 25
+
+                    var width = d["Duration due to tied notes"] / 480 * 25;
+//                    if (width < 0) {
+//                        console.log(d);
+//                    }
+                    return Math.max(width, 0);
                 })
                 .attr("x", function (d, i) {
-
-                    return (d["Location"] / 256 * 25) + 50;
+                    console.log(d["Location"])
+                    return (d["Location"] / 480 * 25) + 50;
                 })
                 .attr("y", function(d,i) {
                     
                     return 880 - (d["Midi number"] * 10);
                 })
                 .attr("fill", function(d,i) {
-                    return d3.interpolateCubehelixDefault(i)
+                    return d3.interpolateCubehelixDefault(color)
                 })
-                
+                .attr("style", "outline: thin solid gray;") 
                 .on("mouseover", function(d, i){
                     
                     var dataForNode = d3.select(this).datum();
