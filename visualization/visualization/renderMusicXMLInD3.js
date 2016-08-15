@@ -82,6 +82,9 @@ function createTextForToolTip(absLocation,
                                measureLocationInQuarterNotes,
                                midiNumber,
                                qbpm,
+                               chordRoot,
+                               chordRootAsInt,
+                               chordType,
                                timeStamp) {
     
     
@@ -115,6 +118,12 @@ function createTextForToolTip(absLocation,
         + timeStamp
         + "<br><strong>Note name</strong> " 
         + noteFromMidi
+        + "<br><strong>Chord root</strong> " 
+        + chordRoot
+        + "<br><strong>Chord root as int</strong> " 
+        + chordRootAsInt
+        + "<br><strong>Chord type</strong> " 
+        + chordType
     
 }
 
@@ -171,7 +180,10 @@ d3.json("data/output.json", function (error, data) {
                           dataForNode["Measure location"], 
                           dataForNode["Midi number"],
                           dataForNode["Quarter beats per minute"],
-                          dataForNode["Time stamp"])
+                          dataForNode["Current chord root"],
+                          dataForNode["Current chord root as int"],
+                          dataForNode["Current chord type"],
+                          dataForNode["Time stamp"]);
                     
                     tooltip.html(textForDisplay); 
                     
