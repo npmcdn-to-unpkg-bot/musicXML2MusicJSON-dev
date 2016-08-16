@@ -11,6 +11,7 @@ module.exports.musicXML2JSONConfig = {
     arrayToHoldSingleInstrument:[],
     arrayToHoldEachInstrumentSeperately:[],
     musicJSON:[],
-    divisions:0
+    divisions:0,
+    globalMetaData:0
 }
 

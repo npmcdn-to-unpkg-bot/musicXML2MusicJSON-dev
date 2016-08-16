@@ -15,5 +15,6 @@ var argv = require('minimist')(process.argv.slice(2));
 
  //parseMusicXML.parseRawMusicXML("/corpus/musicXML/misc/moz1.xml")
  //parseMusicXML.parseRawMusicXML("/corpus/musicXML/misc/bach.xml")
- parseMusicXML.parseRawMusicXML("/corpus/musicXML/KeithJarrett/somedayMyPrinceWillCome.xml")
+ parseMusicXML.parseRawMusicXML("/corpus/musicXML/KeithJarrett/somedayMyPrinceWillCome.xml",
+                               "./additionalCorpusMetadata/keithJarrettSomedayMyPrinceWillCome.json")
  //parseMusicXML.parseRawMusicXML("/corpus/musicXML/misc/mahl1_1.xml")
