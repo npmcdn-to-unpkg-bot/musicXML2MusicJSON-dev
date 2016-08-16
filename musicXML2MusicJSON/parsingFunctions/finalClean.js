@@ -43,12 +43,13 @@ module.exports.finalClean = function (musicData, globalMetaData) {
             
             
             lodash.forEach(globalMetaData, function (value, key) {
-                console.log(key, value);
+                
                 cleanedMusicJSON[i][j][key] = value
             });
-            
+      
+             
         }
-        //console.log(globalMetaData);
+      
     }
     return cleanedMusicJSON;
 }

@@ -18,6 +18,11 @@ var finalClean = require('./parsingFunctions/finalClean');
 
 
 module.exports.parseRawMusicXML = function (pathToFile, pathToOtherGlobalMetaData) {
+    
+    // temp for KJ solos
+    var writeTitle = pathToFile.split('/', 5)[4];
+    writeTitle = writeTitle.substr(0, writeTitle.length - 4);
+    
 
     
     var parsedJSON = require(pathToOtherGlobalMetaData);
@@ -122,7 +127,7 @@ module.exports.parseRawMusicXML = function (pathToFile, pathToOtherGlobalMetaDat
             fs.writeFile('../visualization/visualization/data/output.json', JSON.stringify(musicXML2JSONConfig.musicJSON, null, 2), function (err) {
                 if (err) return console.log(err);
             });
-            fs.writeFile('outputData/output.json', JSON.stringify(musicXML2JSONConfig.musicJSON, null, 2), function (err) {
+            fs.writeFile('outputData/' + writeTitle + '.json', JSON.stringify(musicXML2JSONConfig.musicJSON, null, 2), function (err) {
                 if (err) return console.log(err);
                 console.log('Finished. \nMusicJSON file in "outputData/rawData.json" and "../data-visualisation/visualisation/data/rawData.json"');
             });
