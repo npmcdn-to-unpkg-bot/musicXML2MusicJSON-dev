@@ -1,3 +1,8 @@
+// issues...
+// clean up passing file names
+// batch processing
+// writing final array issue
+
 //node convertMusicXML2MusicJSON.js  '/corpus/bach.xml'
 var parseMusicXML = require('./parser')
 var argv = require('minimist')(process.argv.slice(2));
@@ -22,4 +27,4 @@ var argv = require('minimist')(process.argv.slice(2));
 
 //parseMusicXML.parseRawMusicXML("/corpus/musicXML/KeithJarrett/keithJarrettSomedayMyPrinceWillCome.xml", "./additionalCorpusMetadata/keithJarrettSomedayMyPrinceWillCome.json")
 //
-parseMusicXML.parseRawMusicXML("/corpus/musicXML/KeithJarrett/keithJarrettStellaByStarlight.xml", "./additionalCorpusMetadata/keithJarrettStellaByStarlight.json")
+//parseMusicXML.parseRawMusicXML("/corpus/musicXML/KeithJarrett/keithJarrettStellaByStarlight.xml", "./additionalCorpusMetadata/keithJarrettStellaByStarlight.json")
