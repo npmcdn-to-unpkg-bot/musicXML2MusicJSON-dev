@@ -26,8 +26,9 @@ module.exports.parseRawMusicXML = function (pathToFile, pathToOtherGlobalMetaDat
 
     
     var parsedJSON = require(pathToOtherGlobalMetaData);
+    
     musicXML2JSONConfig.globalMetaData = require(pathToOtherGlobalMetaData);
-    //console.log(parsedJSON);
+   
 
  
     var pathToFile = pathToFile

@@ -131,7 +131,8 @@ d3.json("data/output.json", function (error, data) {
 
     var arr = [];
     for (var j = 0; j < data.length; j++) {
-        color = color + 1
+        
+        color = color + 0.3
         
        var x = canvas.append("g")
        x.selectAll("rect")
@@ -148,7 +149,7 @@ d3.json("data/output.json", function (error, data) {
                     return Math.max(width, 0);
                 })
                 .attr("x", function (d, i) {
-                    console.log(d["Location"])
+                    
                     return (d["Location"] / 480 * 25) + 50;
                 })
                 .attr("y", function(d,i) {

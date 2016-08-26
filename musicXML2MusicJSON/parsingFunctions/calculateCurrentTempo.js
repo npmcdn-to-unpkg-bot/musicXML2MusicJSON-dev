@@ -6,6 +6,7 @@ function createTempoInt(tempo) {
     var timeDenominator = 1;
     var absLocation = tempo.absLocation;
     var tempoInBPM;
+    
     try {
         var beatUnit = tempo.currentTempo.metronome[0]["beat-unit"][0];
         var qbpm = tempo.currentTempo.metronome[0]["per-minute"][0];
@@ -25,7 +26,7 @@ function createTempoInt(tempo) {
     catch (err) {
         tempoInBPM = 60;
     }
-    
+     
     var unitsPerMinute = tempoInBPM * 256;
     
 
