@@ -19,7 +19,7 @@ var argv = require('minimist')(process.argv.slice(2));
 //parseMusicXML.parseRawMusicXML("/corpus/musicXML/KeithJarrett/keithJarrettSomedayMyPrinceWillCome.xml", "./additionalCorpusMetadata/keithJarrettSomedayMyPrinceWillCome.json")
 
 
-parseMusicXML.parseRawMusicXML("/corpus/musicXML/miscExamples/mahler5_1.xml", "./additionalCorpusMetadata/bachBrandenberg2_1.json")
+parseMusicXML.parseRawMusicXML("/corpus/musicXML/miscExamples/verdiDonnaEMobile.xml", "./additionalCorpusMetadata/verdiDonnaEMobile.json")
 //
 //parseMusicXML.parseRawMusicXML("/corpus/musicXML/KeithJarrett/keithJarrettStellaByStarlight.xml", "./additionalCorpusMetadata/keithJarrettStellaByStarlight.json")
 

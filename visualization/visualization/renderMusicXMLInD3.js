@@ -132,7 +132,7 @@ d3.json("data/output.json", function (error, data) {
     var arr = [];
     for (var j = 0; j < data.length; j++) {
         
-        color = color + 0.3
+        color = color + 0.1;
         
        var x = canvas.append("g")
        x.selectAll("rect")
@@ -143,9 +143,9 @@ d3.json("data/output.json", function (error, data) {
                 .attr("width", function (d, i) {
 
                     var width = d["Duration due to tied notes"] / 480 * 25;
-//                    if (width < 0) {
-//                        console.log(d);
-//                    }
+                    if (width < 0) {
+                        console.log(d);
+                    }
                     return Math.max(width, 0);
                 })
                 .attr("x", function (d, i) {
